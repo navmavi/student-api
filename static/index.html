@@ -37,6 +37,32 @@
             background-color: #45a049;
         }
     </style>
+    <script>
+          
+
+       
+            fetch('http://localhost:5000/api/v1/student')
+                .then((data)=>{
+                    //console.log(data); json format
+                    return data.json(); //converted to object
+                }) .then((objectData) => {
+                  let tableData="";
+                  objectData.map((values)=> {
+                    tableData+=` <tr>
+                <td>${values.name}</td>
+                <td>${values.email}</td>
+                <td>${values.age}</td>
+                <td>${values.dob}</td>
+              </tr>`;
+                  });
+                  document.getElementById("table_body").innerHTML = tableData;
+                })
+                .catch((err) => {
+        console.log(err);
+    });
+
+                
+    </script>
 </head>
 <body>
     <div class="container">
@@ -56,6 +82,27 @@
             
             <input type="submit" value="Submit">
         </form>
+    </div>
+    <div>
+        <h1> User</h1>
+        <div class="container">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr>
+               
+
+                <th scope="col">name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Dob</th>
+              </tr>
+            </thead>
+            <tbody id="table_body">
+             
+              
+            </tbody>
+          </table>
+        </div>
     </div>
 </body>
 </html>
